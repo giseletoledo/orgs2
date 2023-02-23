@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.alura.orgs.R
 import br.com.alura.orgs.databinding.ProdutoItemBinding
 import br.com.alura.orgs.model.Produto
 import coil.load
@@ -30,7 +31,9 @@ class ListaProdutosAdapter(
             val valor = binding.produtoItemValor
             val valorEmMoeda: String = formataParaMoeda(produto.valor)
             valor.text = valorEmMoeda
-            binding.produtoItemImagem.load(produto.imagem)
+            binding.produtoItemImagem.load(produto.imagem) {
+                fallback(R.drawable.erro)
+            }
         }
 
         private fun formataParaMoeda(valor: BigDecimal): String {
